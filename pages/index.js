@@ -8,6 +8,8 @@ export default function Home() {
       <Head>
         <title>Next.js Starter!</title>
         <link rel="icon" href="/favicon.ico" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3661812461656391"
+          crossorigin="anonymous"></script>
       </Head>
 
       <main>
