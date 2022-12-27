@@ -1,45 +1,42 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-class GoogleAd extends Component {
-  googleInit = null;
+function GoogleAd({ classNames, slot, googleAdId, style, format }) {
+  let googleInit = null;
+  const timeout = 200;
 
-  componentDidMount() {
-    const { timeout } = this.props;
-    this.googleInit = setTimeout(() => {
-      if (typeof window !== 'undefined')
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
+  useEffect(() => {
+    googleInit = setTimeout(() => {
+      if (typeof window !== 'undefined') {
+        const ggAds = window.adsbygoogle || [];
+        ggAds.push({});
+      }
     }, timeout);
-  }
 
-  componentWillUnmount() {
-    if (this.googleInit) clearTimeout(this.googleInit);
-  }
+    return () => {
+      if (googleInit) clearTimeout(googleInit);
+    }
+  }, [googleInit, timeout]);
 
-  render() {
-    const { classNames, slot, googleAdId, style, format } = this.props;
-    return (
-      <div className={classNames}>
-        <ins
-          className="adsbygoogle"
-          style={style || { display: 'block', textAlign: "center" }}
-          data-ad-client={googleAdId}
-          data-ad-slot={slot}
-          data-ad-format={format || "auto"}
-          data-full-width-responsive="true"
-        ></ins>
-      </div>
-    );
-  }
+  return (
+    <div className={classNames} style={{ width: '1000%' }}>
+      <ins
+        className="adsbygoogle"
+        style={style || { display: 'block', textAlign: "center" }}
+        data-ad-client={googleAdId}
+        data-ad-slot={slot}
+        data-ad-format={format || "auto"}
+        data-full-width-responsive="true"
+      ></ins>
+    </div>
+  );
 }
+
 GoogleAd.propTypes = {
   classNames: PropTypes.string,
   slot: PropTypes.string,
   timeout: PropTypes.number,
   googleAdId: PropTypes.string,
 };
-GoogleAd.defaultProps = {
-  classNames: '',
-  timeout: 200,
-};
+
 export default GoogleAd;
