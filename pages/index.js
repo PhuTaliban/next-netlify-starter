@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
+import GoogleAd from '@components/GoogleAd';
 
 export default function Home() {
   return (
@@ -8,8 +9,6 @@ export default function Home() {
       <Head>
         <title>Next.js Starter!</title>
         <link rel="icon" href="/favicon.ico" />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3661812461656391"
-          crossorigin="anonymous"></script>
       </Head>
 
       <main>
@@ -18,7 +17,7 @@ export default function Home() {
           Get started by editing <code>pages/index.js</code>
         </p>
       </main>
-
+      <GoogleAd slot="8502170963" googleAdId="ca-pub-3661812461656391"/>
       <Footer />
     </div>
   )
